@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+/* vietnamese */
+@font-face {
+  font-family: 'Quicksand medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/quicksand/v22/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkM0o58m-wi40.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Quicksand medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/quicksand/v22/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkM0o58i-wi40.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Quicksand medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/s/quicksand/v22/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkM0o58a-wg.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+$font-family : "Quicksand";
+$font-family-medium: "Quicksand medium";
+
+$colors: (
+  "primary": $primary-color,
+  "secondary":$primary-color-light,
+  "white":$white,
+  'black':$black
+);
+
+
+$font-sizes: (
+  "10": 0.7143rem,
+  "11": 0.7857rem,
+  "12": 0.8571rem,
+  "13": 0.9286rem,
+  "14": 1rem,
+  "15": 1.071rem,
+  "16": 1.143rem,
+  "18": 1.286rem,
+  "20": 1.429rem,
+  "22": 1.571rem,
+  "24": 1.714rem,
+  "26": 1.857rem,
+  "28": 2rem,
+  "30": 2.143rem,
+  "32": 2.286rem,
+  "34": 2.429rem,
+  "36": 2.571rem,
+  "38": 2.714rem,
+  "40": 2.857rem,
+);
+
+@each $i, $size in $font-sizes {
+  // for font -sizes
+  .text-#{$i} {
+    font-size: $size !important;
+    margin-top: 0;
+    margin-bottom: 0.5 * $size !important;
+  }
+
+  // for colors
+  @each $name, $color in $colors {
+    .text-#{$i}-#{$name} {
+      font-size: $size !important;
+      color: $color !important;
+      margin-top: 0;
+      margin-bottom: 0.2 * $size !important;
+    }
+    // for font weight
+  }
+}
+// titles
+

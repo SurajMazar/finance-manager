@@ -1,0 +1,18 @@
+.fm-form{
+  .MuiTextField-root{
+    width:100%;
+    .MuiFormLabel-root.Mui-focused {
+      color: $primary-color;
+    }
+    .MuiInput-underline::after {
+      border-bottom: 2px solid $primary-color;
+    }
+    .MuiInput-underline::before{
+      font-family: $font-family !important;
+    }
+  }
+
+  input,label{
+    font-family: $font-family !important;
+  }
+}

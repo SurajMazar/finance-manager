@@ -1,0 +1,13 @@
+.btn-primary{
+  background-color: $primary-color;
+  color:$white;
+  border:none;
+  padding:0.5em 1em;
+  font-size: font('16');
+  border-radius:font('28');
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  &:hover{
+    box-shadow:0 0 10px rgba($primary-color,0.5);
+  }
+}

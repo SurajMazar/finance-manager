@@ -1,0 +1,125 @@
+// breaking sections
+@for $i from 1 to 5 {
+  // padding top bottom together
+  .section-break-#{$i} {
+    padding: 1em * $i 0;
+    @include maxWidth(992px) {
+      padding: 1em 0;
+    }
+  }
+
+  // padding top bottom together
+  .section-padding-#{$i} {
+    padding: 1em * $i;
+    @include maxWidth(992px) {
+      padding: 0.3em * $i;
+    }
+  }
+
+  // padding top bottom seperately
+  @for $j from 1 to 5 {
+    .section-break-#{$i}-#{$j} {
+      padding-top: 1em * $i;
+      padding-bottom: 1em * $j;
+      @include maxWidth(992px) {
+        padding: 1em 0;
+      }
+    }
+  }
+  .h#{i}{
+    font-size:0.5 * (4-$i)em;
+  }
+}
+
+
+// align
+.align-item-center{
+  align-items: center !important;
+}
+
+.text-center{
+  text-align: center !important;
+}
+
+.justify-content-center{
+  justify-content: center !important;
+}
+
+.text-justify{
+  text-align: justify;
+}
+
+//display
+.display-flex{
+  display: flex;
+}
+.display-flex-ac{
+  display: flex;
+  align-items: center;
+}
+
+
+
+/*
+*/
+
+$ranges:(
+  '0':0,
+  '05':0.5em,
+  '1':1em,
+  '15':1.5em,
+  '2':2em,
+  '25':2.5em,
+  '3':3em,
+);
+
+@each $i, $range in $ranges{
+  // padding 
+  .pb-#{$i}{
+    padding-bottom: $range !important;
+  }
+  
+  .pt-#{$i}{
+    padding-top: $range !important;
+  }
+
+  .p-#{$i}{
+    padding: $range !important;
+  }
+
+  .pr-#{$i}{
+    padding-right: $range !important;
+  }
+
+
+  .pl-#{$i}{
+    margin-left: $range !important;
+  }
+  
+  // padding
+  .mb-#{$i}{
+    margin-bottom: $range !important;
+  }
+  
+  .mt-#{$i}{
+    margin-top: $range !important;
+  }
+
+  .m-#{$i}{
+    margin: $range !important;
+  }
+
+  .mr-#{$i}{
+    margin-right: $range !important;
+  }
+
+
+  .ml-#{$i}{
+    margin-left: $range !important;
+  }
+}
+
+
+.f-direction-col{
+  flex-direction:column;
+}

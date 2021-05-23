@@ -29,7 +29,6 @@ export const Login = (formData:FormData) =>{
         Toast('top-center',"Something went wrong",false);
       }
       dispatch(push('/login'));
-      
     }
   }
 }

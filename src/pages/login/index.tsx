@@ -61,7 +61,7 @@ const LoginForm:React.FC = ()=>{
     <div className="auth-section">
       <Grid item sm={10} xs={10} md={6} lg={4} xl={3}>
         <div className="auth-form-wrapper section-padding-2">
-          <h1 className="text-18-primary text-center">Welcome back !!</h1>
+          <h1 className="text-20-primary text-center">Welcome back !!</h1>
           <p className="text-14-secondary text-center">(Login to continue your session)</p>
 
           <div className="section-break-2">

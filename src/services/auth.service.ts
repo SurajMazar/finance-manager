@@ -6,9 +6,10 @@ import {
   loginFail
 } from '../store/action-reducer/auth.actionreducer';
 import { httpbase } from '../utils/axios.utils';
+import { setLocalstorage } from '../utils/localstorage.utils';
 import { Toast } from '../utils/sweetalert.util';
 
-export const Login = (formData:FormData) =>{
+export const Login = (formData:FormData,callback:()=>void) =>{
   return async(dispatch:Dispatch)=>{
     dispatch(loginRequest());
     try{
@@ -18,7 +19,9 @@ export const Login = (formData:FormData) =>{
         user:response.data.data.user || undefined,
       }
       dispatch(loginSuccess(data));
+      setLocalstorage('token',response.data.data.token);
       Toast('top-center','Login successful',true);
+      callback();
       dispatch(push('/'));
     }catch(e){
       if(e && e.response && e.response.data){

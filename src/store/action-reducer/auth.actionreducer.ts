@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import User from '../../models/user.model';
+import { getLocalStorage } from '../../utils/localstorage.utils';
 
 
 interface authInterface{
@@ -10,10 +11,11 @@ interface authInterface{
   error:any|undefined
 }
 
+const token = getLocalStorage('token');
 
 const initialState:authInterface = {
-  authenticated:false,
-  token:undefined,
+  authenticated:token?true:false,
+  token:token?token:undefined,
   user:undefined,
   loading:false,
   error:undefined

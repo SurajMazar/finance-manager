@@ -33,20 +33,17 @@ const LoginForm:React.FC = ()=>{
 
   const onFieldChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,field:'email'|'password') =>{
     let value = e.currentTarget.value;
-    switch(field){
-      case 'email':
-        setFields({
-          ...fields,
-          email:value
-        });
-        break;
-      case 'password':
-        setFields({
-          ...fields,
-          password:value
-        })
-        break;
-    }
+    setFields({
+      ...fields,
+      [field]:value
+    });
+  }
+
+  const clearform = ()=>{
+    setFields({
+      email:'',
+      password:''
+    });
   }
   /** Form fields */
 
@@ -54,7 +51,7 @@ const LoginForm:React.FC = ()=>{
   const AppLogin = (e:React.FormEvent)=>{
     e.preventDefault();
     const form = setFormdata(fields)
-    dispatch(Login(form));
+    dispatch(Login(form,clearform));
   }
 
   return(
@@ -67,10 +64,10 @@ const LoginForm:React.FC = ()=>{
           <div className="section-break-2">
             <form onSubmit={AppLogin} className="fm-form">
               <Grid container className="justify-content-center">
-                <Grid item xs={8} className="section-break-1">
+                <Grid item xs={10} className="section-break-1">
                   <TextField required  label="Email" value={fields.email} onChange={(e)=>onFieldChange(e,'email')}/>
                 </Grid>
-                <Grid item xs={8} className="section-break-1">
+                <Grid item xs={10} className="section-break-1">
                   <TextField required  label="Password" type="password" value={fields.password} onChange={(e)=>onFieldChange(e,'password')}/>
                 </Grid>
               </Grid>

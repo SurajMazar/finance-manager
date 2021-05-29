@@ -15,4 +15,11 @@
   input,label{
     font-family: $font-family !important;
   }
+
+  .MuiFormLabel-root.Mui-focused {
+    color: $primary-color;
+  }
+  .MuiInput-underline::after {
+    border-bottom: 2px solid $primary-color;
+  }
 }

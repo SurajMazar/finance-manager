@@ -71,6 +71,7 @@ $ranges:(
   '2':2em,
   '25':2.5em,
   '3':3em,
+  'auto':auto
 );
 
 @each $i, $range in $ranges{
@@ -127,4 +128,27 @@ $ranges:(
 
 .h-100{
   height: 100%;
+}
+
+
+
+.text-transform-none{
+  text-transform: none !important;
+}
+
+
+// float
+.ft-r{
+  float:right !important;
+}
+
+.ft-l{
+  float:left !important;
+}
+
+
+// background
+.bg-primary{
+  background-color: $white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }

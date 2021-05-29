@@ -3,7 +3,8 @@ import { Dispatch } from 'redux';
 import {
   loginRequest,
   loginSuccess,
-  loginFail
+  loginFail,
+  clearAuthState
 } from '../store/action-reducer/auth.actionreducer';
 import { httpbase } from '../utils/axios.utils';
 import { setLocalstorage } from '../utils/localstorage.utils';
@@ -19,8 +20,9 @@ export const Login = (formData:FormData,callback:()=>void) =>{
         user:response.data.data.user || undefined,
       }
       dispatch(loginSuccess(data));
-      setLocalstorage('token',response.data.data.token);
-      Toast('top-center','Login successful',true);
+      setLocalstorage('token', response.data.data.token);
+      setLocalstorage('username', response.data.data.user.name);
+      Toast('top','Login successful',true);
       callback();
       dispatch(push('/'));
     }catch(e){
@@ -29,9 +31,19 @@ export const Login = (formData:FormData,callback:()=>void) =>{
         Toast('top-center',e.response.data.data.error,false);
       }else{
         dispatch(loginFail("Something went wrong"));
-        Toast('top-center',"Something went wrong",false);
+        Toast('top',"Something went wrong",false);
       }
       dispatch(push('/login'));
     }
+  }
+}
+
+
+export const logout = () =>{
+  return async(dispatch:Dispatch)=>{
+    dispatch(clearAuthState());
+    localStorage.clear();
+    push('/login');
+    Toast('top',"You have been logged out!!",true);
   }
 }

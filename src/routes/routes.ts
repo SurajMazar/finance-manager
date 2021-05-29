@@ -4,6 +4,11 @@ import Private from '../layouts/private';
 
 import Login from '../pages/login';
 import Dashboard from '../pages/dashboard';
+import Income from '../pages/income';
+import Category from '../pages/category';
+import Expenses from '../pages/expenses';
+import Daybook from '../pages/daybook';
+import Reports from '../pages/reports';
 
 
 interface routeInterface{
@@ -26,6 +31,36 @@ const routes:Array<routeInterface>=[
     component:Dashboard,
     layout:Private,
     name:'Dashboard'
+  },
+  {
+    path:'/income',
+    component:Income,
+    layout:Private,
+    name:'Income'
+  },
+  {
+    path:'/category',
+    component:Category,
+    layout:Private,
+    name:'Category'
+  },
+  {
+    path:'/expenses',
+    component:Expenses,
+    layout:Private,
+    name:'Expenses'
+  },
+  {
+    path:'/daybook',
+    component:Daybook,
+    layout:Private,
+    name:'Daybook'
+  },
+  {
+    path:'/reports',
+    component:Reports,
+    layout:Private,
+    name:'Reports'
   }
 ]
 

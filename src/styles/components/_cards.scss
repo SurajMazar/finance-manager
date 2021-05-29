@@ -1,0 +1,15 @@
+.cate-list{
+  padding:0.5em 1em;
+  font-size: font('15');
+  background-color: $grey;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  margin-bottom:0.5em;
+  display: flex;
+  align-items: center;
+  border-radius:5px;
+  .cate-actions{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+}

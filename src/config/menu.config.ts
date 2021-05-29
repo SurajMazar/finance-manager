@@ -1,29 +1,59 @@
-import { IoHome } from "react-icons/io5";
-import {FiUserPlus,FiUserMinus} from 'react-icons/fi';
+import {
+  FcMoneyTransfer,
+  FcCurrencyExchange,
+  FcPieChart,
+  FcReadingEbook,
+  FcInspection,
+  FcTodoList
+} from 'react-icons/fc';
+
 interface menu{
-  path:string,
+  path?:string,
   name:string,
-  icon:any
+  icon?:any
 }
 
 
 const menus:Array<menu> = [
   {
     path:'/',
-    icon:IoHome,
+    icon:FcPieChart,
     name:'Dashboard'
   },
 
   {
+    name:'Activities'
+  },
+
+  {
+    name:'Categories',
+    icon:FcTodoList,
+    path:'/category'
+  },
+
+  {
     path:'/income',
-    icon:FiUserPlus,
+    icon:FcCurrencyExchange,
     name:'Income'
   },
 
   {
     path:'/expenses',
-    icon:FiUserMinus,
+    icon:FcMoneyTransfer,
     name:'Expenses'
+  },
+  {
+    name:'Information'
+  },
+  {
+    path:'/daybook',
+    icon:FcReadingEbook,
+    name:'Daybook'
+  },
+  {
+    path:'/reports',
+    icon:FcInspection,
+    name:'Reports'
   }
 ]
 export default menus;

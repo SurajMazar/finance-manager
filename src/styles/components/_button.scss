@@ -1,13 +1,37 @@
 .btn-primary{
-  background-color: $primary-color;
-  color:$white;
-  border:none;
-  padding:0.5em 1em;
-  font-size: font('16');
-  border-radius:font('28');
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
+  background-color: $primary-color!important;
+  color:$white!important;
+  border:none!important;
+  padding:0.5em 1em!important;
+  border-radius:font('28')!important;
+  transition: all 0.5s ease-in-out!important;
+  cursor: pointer!important;
+  text-transform: none !important;
   &:hover{
-    box-shadow:0 0 10px rgba($primary-color,0.5);
+    box-shadow:0 0 10px rgba($primary-color,0.5)!important;
+  }
+  svg{
+    margin-right: 0.5em;
+  }
+}
+
+.btn{
+  text-transform: none !important;
+  display: block !important;
+}
+
+
+.btn-pm-round{
+  background-color: $primary-color!important;
+  color:$white!important;
+  border:none!important;
+  padding:0.5em!important;
+  border-radius:50%!important;
+  transition: all 0.5s ease-in-out!important;
+  cursor: pointer!important;
+  text-transform: none !important;
+  margin-right: 0.5em;
+  &:hover{
+    box-shadow:0 0 10px rgba($primary-color,0.5)!important;
   }
 }

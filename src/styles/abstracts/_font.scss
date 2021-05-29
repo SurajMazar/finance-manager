@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-
+@import './functions';
 /* vietnamese */
 @font-face {
   font-family: 'Quicksand medium';
@@ -77,5 +77,23 @@ $font-sizes: (
     // for font weight
   }
 }
+
+ // for colors
+ @each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color !important;
+    margin-top: 0;
+  }
+  // for font weight
+}
 // titles
 
+.logo-title{
+  padding: 0.5em;
+  background-color: $primary-color;
+  color:$white;
+  font-size: font('16');
+  border-bottom: 1px solid $primary-color;
+  text-align: center;
+  font-family: $font-family-medium;
+}

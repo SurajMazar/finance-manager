@@ -28,9 +28,9 @@ const addCreatedCat = (categories:Array<Category>|undefined,cat:Category) =>{
         if(index !== -1)  categories[index] = parent;
         return categories;
       }
-      return [cat].concat(categories);
     }
-    return [cat].concat(categories);
+    categories.push(cat);
+    return categories;
   }
   return [cat];
 }
@@ -66,6 +66,18 @@ const updateCat = (categories:Array<Category>|undefined,cat:Category)=>{
       if(oldChild){
         let cIndex = parentWithUpdatedCat.Category.indexOf(oldChild);
         if(cIndex !== -1) parentWithUpdatedCat.Category[cIndex] = cat  // at last updated  here
+        if(pIndex !== -1) categories[pIndex] = parentWithUpdatedCat;
+      }
+      if(parentWithUpdatedCat.id !== cat.parent_id){  //incase of parent change
+        parentWithUpdatedCat.Category = parentWithUpdatedCat.Category.filter(c=>c.id !== cat.id);
+        let newParent = categories.find(c=>c.id === cat.parent_id);
+        if(newParent){ 
+          newParent.Category.push(cat);
+          let nIndex = categories.indexOf(newParent);
+          categories[nIndex] = newParent;
+        }else{
+          categories.push(cat);
+        }
         if(pIndex !== -1) categories[pIndex] = parentWithUpdatedCat;
       }
     }

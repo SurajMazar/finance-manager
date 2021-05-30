@@ -59,8 +59,9 @@ export const updateCategory = (formdata:FormData,id:number,callback:any = null) 
   return async (dispatch:Dispatch) =>{
       dispatch(updateCategoryRequest());
       try{
-        const response = await  httpbase().put('/category/update/'+id,formdata);
+        const response =  await  httpbase().put('/category/update/'+id,formdata);
         dispatch(updateCategorySuccess(response.data.data));
+        fetchCategory();
         if(callback)callback();
         Toast('top',"Category updated successfully",true);
       }catch(e){

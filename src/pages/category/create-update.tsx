@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import {Modal,Backdrop,Fade,Grid,TextField,FormControl,InputLabel,Select ,MenuItem,Button} from '@material-ui/core';
+import {Modal,Backdrop,Fade,Grid,TextField,FormControl,InputLabel,Select ,MenuItem} from '@material-ui/core';
 import { filterCatByType, setFormdata } from '../../utils/common.utils';
 import { createCategory, updateCategory } from '../../services/category.service';
 import { useDispatch } from 'react-redux';
 import Category from '../../models/category.model';
-
+import LoadingButton from '../../components/buttons/loading';
 
 interface CECprops{
   visible:boolean,
   closeModel:()=>void,
   edit:Category|undefined,
-  categories:Array<Category>
+  categories:Array<Category>,
+  loading:boolean
 }
 
 
@@ -19,14 +20,14 @@ interface fields{
   name:string,
   description:string,
   type:string,
-  parent_id:number|null
+  parent_id:number|null,
 }
 
 const CreateEditCategory:React.FC<CECprops> =props=>{
 
   const dispatch = useDispatch();
 
-  const {closeModel,visible,edit,categories} = props;
+  const {closeModel,visible,edit,categories,loading} = props;
 
   const [fields,setFields] = useState<fields>({
     name:'',
@@ -49,7 +50,7 @@ const CreateEditCategory:React.FC<CECprops> =props=>{
 
 
   // data binding with form
-  const onFieldChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>|React.ChangeEvent<{ name?: string; value: unknown }>,field:'name'|'description'|'type'|'parent_id') =>{
+  const onFieldChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>|React.ChangeEvent<{ name?: string; value: unknown }>,field:'name'|'description'|'parent_id') =>{
     let value = e.target.value;
     setFields({
       ...fields,
@@ -57,14 +58,23 @@ const CreateEditCategory:React.FC<CECprops> =props=>{
     });
   }
 
+  const onTypeFieldChange = (e:React.ChangeEvent<{ name?: string; value: unknown}>)=>{
+    setFields({
+      ...fields,
+      type:e.target.value as string,
+      parent_id:null
+    });
+  }
+
+
  
 
 
   // create
-  const create = (e:React.FormEvent)=>{
+  const create = async (e:React.FormEvent)=>{
     e.preventDefault();
     const form = setFormdata(fields);
-    dispatch(createCategory(form,modelClose))
+    await dispatch(createCategory(form,modelClose));
   }
 
 
@@ -80,11 +90,11 @@ const CreateEditCategory:React.FC<CECprops> =props=>{
     }
   },[edit]);
 
-  const update =  (e:React.FormEvent)=>{
+  const update =  async (e:React.FormEvent)=>{
     e.preventDefault();
     if(edit){
       const form = setFormdata(fields);
-      dispatch(updateCategory(form,edit?.id,modelClose))
+      await dispatch(updateCategory(form,edit?.id,modelClose));
     }
   }
  
@@ -116,7 +126,7 @@ const CreateEditCategory:React.FC<CECprops> =props=>{
                    {/* type */}
                   <FormControl style={{width:'100%'}}>
                     <InputLabel id="cat-type">Type</InputLabel>
-                      <Select id="cat-type"  value={fields.type} required onChange={(e)=>onFieldChange(e,'type')}>
+                      <Select id="cat-type"  value={fields.type} required onChange={onTypeFieldChange}>
                         <MenuItem value={"expense"}>Expense</MenuItem>
                         <MenuItem value={"income"}>Income</MenuItem>
                       </Select>
@@ -131,7 +141,7 @@ const CreateEditCategory:React.FC<CECprops> =props=>{
                         <Select id="cat-type"  value={fields.parent_id || ""}  onChange={(e)=>onFieldChange(e,'parent_id')}>
                           <MenuItem value="">None</MenuItem>
                           {
-                            filterCatByType(categories,fields.type).map(cat=>(
+                            filterCatByType(categories,fields.type,edit).map(cat=>(
                               <MenuItem value={cat.id} key={cat.id}>{cat.name}</MenuItem>
                             ))
                           }
@@ -148,7 +158,7 @@ const CreateEditCategory:React.FC<CECprops> =props=>{
 
                 <Grid item xs={12} className="text-center">
                   {/* description field */}
-                    <Button children={edit?"Update":"Create"}  type="submit" className="btn-primary"/>
+                  <LoadingButton  loading={loading} text={edit?"Update":"Create"}/>
                 </Grid>
 
               </Grid>

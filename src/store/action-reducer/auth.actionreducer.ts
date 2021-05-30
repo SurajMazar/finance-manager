@@ -1,12 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
-import User from '../../models/user.model';
 import { getLocalStorage } from '../../utils/localstorage.utils';
 
 
 interface authInterface{
   authenticated:boolean,
   token:string | undefined,
-  user:User | undefined,
+  user: | undefined,
   loading:boolean,
   error:any|undefined
 }

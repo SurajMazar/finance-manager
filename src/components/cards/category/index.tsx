@@ -19,10 +19,10 @@ const CategoryCard:React.FC<catcardProps> = (props) =>{
       <>
         {
           categories && categories.length?
-          categories.map((cate)=>(
-            <div key={cate.id}>
+          categories.map((cate,i)=>(
+            <div key={i}>
             {
-              cate.type === type ?
+              cate && cate.type === type ?
               <>
                 <div className="cate-list">
                   <div className="cate-detail">

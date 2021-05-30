@@ -10,7 +10,8 @@ import CategoryCard from '../../components/cards/category';
 interface state{
   category:{
     categories:Array<CategoryModel>,
-    loading:boolean
+    loading:boolean,
+    creating:boolean
   }
 }
 
@@ -26,7 +27,7 @@ const Category:React.FC = () =>{
     const {category} = state;
     return category;
   });
-  const {categories,loading} = state;
+  const {categories,loading,creating} = state;
 
   // end redux
 
@@ -84,7 +85,7 @@ const Category:React.FC = () =>{
       </Grid>
 
       {/* edit create model  */}
-      <CEModal closeModel={closeModel} visible={shoModal} edit={editCat} categories={categories}/>
+      <CEModal closeModel={closeModel} visible={shoModal} edit={editCat} categories={categories} loading={creating}/>
     </section>
   );
 }

@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+For Backend api (https://github.com/SurajMazar/finance-manager-api) 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<b>step 1 : </b> npm install
 
-## Available Scripts
+<b>step 2 : </b> Default api route is http://localhost:5000 change it from (src/config/app.config.ts).
 
-In the project directory, you can run:
+<b>step 3 : </b> npm start (http://localhost:3000)
 
-### `npm start`
+<b>step 4 : </b> npm build (production build)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<b>PACKAGES USED</b>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+material ui (core/picker/lab)
 
-### `npm test`
+node-sass
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+redux
 
-### `npm run build`
+react-redux
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+react-router/reat-router-dom
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+@reduxjs/toolkit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+axios
 
-### `npm run eject`
+sweetalert2
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+moment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+connected-react-router
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+history
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+<b>SCREEN SHOTS</b>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Login screen
+![image](https://user-images.githubusercontent.com/49373020/120115279-ad392c00-c1a2-11eb-87d2-ec2baf2b4888.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+Categories
+
+![image](https://user-images.githubusercontent.com/49373020/120115239-811dab00-c1a2-11eb-8ffc-b2d5f3ae1af1.png)
+![image](https://user-images.githubusercontent.com/49373020/120115262-9db9e300-c1a2-11eb-8189-e50a7b1a6493.png)
+
+
+income expenses listings
+
+![image](https://user-images.githubusercontent.com/49373020/120115289-c641dd00-c1a2-11eb-98d8-38d3e723f15b.png)
+
+
+

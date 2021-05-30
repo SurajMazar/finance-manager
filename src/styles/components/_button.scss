@@ -55,8 +55,6 @@
   text-transform: uppercase;
   svg{
     font-size: font('20');
-    transition: all 0.3s ease;
-    transition-delay: 0.3s;
   }
   &-text{
     width: 0;
@@ -69,7 +67,6 @@
     padding:1em 1.5em;
     svg{
       margin-right:5px;
-      transform:rotate(90deg)
     }
     .floating-btn-text{
       width: auto;

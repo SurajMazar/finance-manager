@@ -4,13 +4,15 @@ import Income from '../../models/income.model';
 interface stateInterface{
   incomes:Array<Income> | undefined,
   loading:boolean,
-  error:any
+  error:any,
+  creating:boolean,
 }
 
 const initialState:stateInterface = {
   incomes:undefined,
   error:undefined,
   loading:false,
+  creating:false
 }
 
 const IncomeSlice = createSlice({
@@ -32,6 +34,20 @@ const IncomeSlice = createSlice({
       state.error= actions.payload;
     },
 
+    createIncomeRequest(state){
+      state.creating=true;
+    },
+
+    createIncomeSuccess(state,actions){
+      state.creating=false;
+      state.incomes=[actions.payload].concat(state.incomes);
+    },
+
+    createIncomeFail(state,actions){
+      state.creating=false;
+      state.error= actions.payload
+    },
+
   }
 });
 
@@ -39,7 +55,12 @@ const IncomeSlice = createSlice({
 export const {
   fetchIncomeFail,
   fetchIncomeRequest,
-  fetchIncomeSuccess
+  fetchIncomeSuccess,
+
+  createIncomeFail,
+  createIncomeRequest,
+  createIncomeSuccess
+  
 } = IncomeSlice.actions;
 
 

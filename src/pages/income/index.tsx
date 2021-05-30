@@ -8,11 +8,17 @@ import { DatePicker,MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from '@date-io/date-fns';
 import {Grid} from '@material-ui/core';
 import {FiPlus} from 'react-icons/fi';
-
+import CreateEdit from './create-edit'; 
+import Category from "../../models/category.model";
+import { fetchCategory } from "../../services/category.service";
 interface state{
   income:{
     incomes:Array<IncomeModel>,
-    loading:boolean
+    loading:boolean,
+    creating:boolean
+  },
+  category:{
+    categories:Array<Category>
   }
 }
 
@@ -24,14 +30,15 @@ const Income:React.FC = () =>{
   const dispatch = useDispatch(); // redux hooks
   useEffect(()=>{
     dispatch(fetchIncomes());
+    dispatch(fetchCategory());
   },[dispatch]);
 
   const state = useSelector((state:state)=>{
-    const {income} = state;
-    return income;
+    const {income,category} = state;
+    return {...income,...category};
   });
 
-  const {incomes,loading} = state;
+  const {incomes,loading,creating,categories} = state;
   // end global state 
 
 
@@ -43,12 +50,26 @@ const Income:React.FC = () =>{
     dispatch(fetchIncomes(moment(date).format('YYYY-MM')));
   };
 
+  //edit show modal related
+  
+  const [showModal,setShowModel] = useState(false);
+
+  /** open create model **/
+  const openModel =()=>{
+    setShowModel(true);
+  }
+
+  /** close modal */
+  const closeModel =()=>{
+    setShowModel(false);
+  }
+
 
   return(
     <section className="main-content">
       <h4 className="text-22 text-center">Incomes</h4>
 
-      <button className="floating-btn">
+      <button className="floating-btn" onClick={openModel}>
        <FiPlus/>
        <div className="floating-btn-text">
          Add income
@@ -73,7 +94,7 @@ const Income:React.FC = () =>{
 
       <div className="section-break-1">
         <h4 className="text-16 text-center">For Month of 
-          <span className="text-primary">
+          <span className="text-primary ml-05">
           {selectedDate?getMonthYear(selectedDate):getMonthYear()}
           </span>
         </h4>
@@ -122,6 +143,8 @@ const Income:React.FC = () =>{
         }
 
       </div>
+
+      <CreateEdit closeModel={closeModel} visible={showModal} loading={creating} edit={undefined} categories={categories}/>
     </section>
   );
 }

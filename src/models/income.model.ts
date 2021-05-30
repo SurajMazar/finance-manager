@@ -6,7 +6,8 @@ interface Income{
   amount: number,
   createdAt:Date,
   updatedAt:Date,
-  category:Category
+  category:Category,
+  cat_id:number
 }
 
 export default Income;

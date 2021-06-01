@@ -7,10 +7,11 @@ import { getMonthYear, getTotal, NepaliNS } from "../../utils/common.utils";
 import { DatePicker,MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from '@date-io/date-fns';
 import {Grid} from '@material-ui/core';
-import {FiPlus} from 'react-icons/fi';
+import {FiEdit, FiPlus} from 'react-icons/fi';
 import CreateEdit from './create-edit'; 
 import Category from "../../models/category.model";
 import { fetchCategory } from "../../services/category.service";
+import Income from "../../models/income.model";
 interface state{
   income:{
     incomes:Array<IncomeModel>,
@@ -22,7 +23,7 @@ interface state{
   }
 }
 
-const Income:React.FC = () =>{
+const IncomePage:React.FC = () =>{
 
   
 
@@ -63,6 +64,13 @@ const Income:React.FC = () =>{
   const closeModel =()=>{
     setShowModel(false);
   }
+
+   // used for editing
+   const [editIncome,setEditCat] = useState<Income|undefined>(undefined);
+   const openeditModel = (inc:Income) =>{
+     setEditCat(inc);
+     openModel();
+   }
 
 
   return(
@@ -117,7 +125,9 @@ const Income:React.FC = () =>{
                 <div className="transaction-item-date">{moment(inc.createdAt).format('Do MMMM YYYY')}</div>
                 <div className="transaction-item-title">{inc.title}</div>
                 <div className="transaction-item-amount">{NepaliNS(inc.amount)}</div>
-                <div className="transaction-item-actions"></div>
+                <div className="transaction-item-actions">
+                  <div onClick={()=>openeditModel(inc)} title="Edit"><FiEdit className="btn-pm-round"/></div>
+                </div>
               </div>
             ))}
             {/* // calculate total */}
@@ -131,7 +141,8 @@ const Income:React.FC = () =>{
               <div className="transaction-item-amount text-primary fw-medium">
                 {NepaliNS(getTotal(incomes))}
               </div>
-              <div className="transaction-item-actions "></div>
+              <div className="transaction-item-actions ">
+              </div>
             </div>
           </>:
           // notransactions
@@ -144,10 +155,10 @@ const Income:React.FC = () =>{
 
       </div>
 
-      <CreateEdit closeModel={closeModel} visible={showModal} loading={creating} edit={undefined} categories={categories}/>
+      <CreateEdit closeModel={closeModel} visible={showModal} loading={creating} edit={editIncome} categories={categories}/>
     </section>
   );
 }
 
 
-export default Income;
+export default IncomePage;

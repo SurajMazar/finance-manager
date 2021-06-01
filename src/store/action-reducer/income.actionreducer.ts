@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import Income from '../../models/income.model';
+import {udateIncomeExpenseArray} from '../../utils/common.utils';
+
 
 interface stateInterface{
   incomes:Array<Income> | undefined,
@@ -14,6 +16,9 @@ const initialState:stateInterface = {
   loading:false,
   creating:false
 }
+
+
+
 
 const IncomeSlice = createSlice({
   name:'income',
@@ -48,6 +53,21 @@ const IncomeSlice = createSlice({
       state.error= actions.payload
     },
 
+
+    updateIncomeRequest(state){
+      state.creating=true;
+    },
+
+    updateIncomeSuccess(state,actions){
+      state.creating=false;
+      state.incomes=udateIncomeExpenseArray(state.incomes,actions.payload);
+    },
+
+    updateIncomeFail(state,actions){
+      state.creating=false;
+      state.error= actions.payload
+    },
+
   }
 });
 
@@ -59,7 +79,11 @@ export const {
 
   createIncomeFail,
   createIncomeRequest,
-  createIncomeSuccess
+  createIncomeSuccess,
+
+  updateIncomeFail,
+  updateIncomeRequest,
+  updateIncomeSuccess
   
 } = IncomeSlice.actions;
 

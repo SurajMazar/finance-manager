@@ -4,13 +4,13 @@ import { filterCatByType, setFormdata } from '../../utils/common.utils';
 import { useDispatch } from 'react-redux';
 import Category from '../../models/category.model';
 import LoadingButton from '../../components/buttons/loading';
-import Income from '../../models/income.model';
-import { createIncome,updateIncome } from '../../services/income.service';
+import { updateExpense,createExpense } from '../../services/expense.service';
+import Expense from '../../models/expense.model';
 
 interface CECprops{
   visible:boolean,
   closeModel:()=>void,
-  edit:Income|undefined,
+  edit:Expense|undefined,
   categories:Array<Category>,
   loading:boolean
 }
@@ -23,7 +23,7 @@ interface fields{
   cat_id:number | null,
 }
 
-const CreateEditIncome:React.FC<CECprops> =props=>{
+const CreateEditExpense:React.FC<CECprops> =props=>{
 
   const dispatch = useDispatch();
 
@@ -47,7 +47,7 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
 
   const cateSelectorOptions = (categories:Array<Category>)=>{
     if(categories){
-      const categoryList =  filterCatByType(categories,'income',undefined);
+      const categoryList =  filterCatByType(categories,'expense',undefined);
       return(
         categoryList.map(cat=>{
           if(cat && cat.Category && cat.Category.length){
@@ -85,7 +85,7 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
   const create = async (e:React.FormEvent)=>{
     e.preventDefault();
     const form = setFormdata(fields);
-    await dispatch(createIncome(form,modelClose));
+    await dispatch(createExpense(form,modelClose));
   }
 
   
@@ -106,7 +106,7 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
     e.preventDefault();
     if(edit){
       const form = setFormdata(fields);
-      await dispatch(updateIncome(form,edit?.id,modelClose));
+      await dispatch(updateExpense(form,edit?.id,modelClose));
     }
   }
   // end editing
@@ -131,7 +131,7 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
       <Fade in={visible}>
         <div className="fm-model">
           <div className="fm-model-content sm">
-            <h3 className="text-16 text-center mb-2">{edit?"Update":"Create"} income</h3>
+            <h3 className="text-16 text-center mb-2">{edit?"Update":"Create"} expense</h3>
             <form className="fm-form" onSubmit={edit?update:create}>
               <Grid container  spacing={3}>
                 <Grid item xs={12}>
@@ -171,4 +171,4 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
   );
 }
 
-export default CreateEditIncome;
+export default CreateEditExpense;

@@ -43,9 +43,22 @@ export const getTotal = (array:Array<Income>) =>{
   return total;
 }
 
+
 export const getMonthYear= (date:Date|null=null) =>{
   if(date){
     return new Date(date).toLocaleString('default', { month: 'long' ,year:'numeric'});
   }
   return new Date().toLocaleString('default', { month: 'long' ,year:'numeric'});
+}
+
+
+export const udateIncomeExpenseArray = (array:Array<Income>|undefined,object:any) =>{
+  if(array && array.length){
+    let oldObject = array.find(item=>item.id === object.id);
+    if(oldObject){
+      const oldIndex = array.indexOf(oldObject);
+      if(oldIndex !== -1) array[oldIndex] = object;
+    }
+  }
+  return array;
 }

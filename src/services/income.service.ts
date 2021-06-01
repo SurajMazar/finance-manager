@@ -4,7 +4,11 @@ import {
 
   createIncomeFail,
   createIncomeRequest,
-  createIncomeSuccess
+  createIncomeSuccess,
+
+  updateIncomeFail,
+  updateIncomeRequest,
+  updateIncomeSuccess
 } from '../store/action-reducer/income.actionreducer';
 
 import {Dispatch} from 'redux';
@@ -42,6 +46,25 @@ export const createIncome = (formdata:FormData,callback:any = null) => {
         dispatch(createIncomeFail(e.response.data));
       }else{
         dispatch(createIncomeFail("Something went wrong"));
+      }
+    }
+  }
+}
+
+
+export const updateIncome = (formdata:FormData,id:number,callback:any = null) => {
+  return async (dispatch:Dispatch) =>{
+      dispatch(updateIncomeRequest());
+      try{
+        const response = await  httpbase().put('/income/update/'+id,formdata);
+        dispatch(updateIncomeSuccess(response.data.data));
+        if(callback)callback();
+        Toast('top',"Income added successfully",true);
+      }catch(e){
+      if(e && e.response && e.response.data){
+        dispatch(updateIncomeFail(e.response.data));
+      }else{
+        dispatch(updateIncomeFail("Something went wrong"));
       }
     }
   }

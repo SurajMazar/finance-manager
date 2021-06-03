@@ -36,21 +36,28 @@ history
 <b>SCREEN SHOTS</b>
 
 Login screen
-![image](https://user-images.githubusercontent.com/49373020/120115279-ad392c00-c1a2-11eb-87d2-ec2baf2b4888.png)
-
+![image](https://user-images.githubusercontent.com/49373020/120674296-ac124280-c4b3-11eb-820e-ecffb66d7fc0.png)
 
 
 Categories
 
-![image](https://user-images.githubusercontent.com/49373020/120115239-811dab00-c1a2-11eb-8ffc-b2d5f3ae1af1.png)
+![image](https://user-images.githubusercontent.com/49373020/120673985-605f9900-c4b3-11eb-9faa-cfe98ccc6033.png)
 
 
-![image](https://user-images.githubusercontent.com/49373020/120115262-9db9e300-c1a2-11eb-8189-e50a7b1a6493.png)
+Daybook (daily transactions)
+![image](https://user-images.githubusercontent.com/49373020/120673724-27272900-c4b3-11eb-890a-9e3881c4e22c.png)
 
 
-income expenses listings
 
-![image](https://user-images.githubusercontent.com/49373020/120115289-c641dd00-c1a2-11eb-98d8-38d3e723f15b.png)
+income listings by month
+
+![image](https://user-images.githubusercontent.com/49373020/120673836-42923400-c4b3-11eb-9607-3afc3ce7b59c.png)
+
+
+expenses listing by month
+
+![image](https://user-images.githubusercontent.com/49373020/120674158-8ab15680-c4b3-11eb-9e72-254231661e74.png)
+
 
 
 

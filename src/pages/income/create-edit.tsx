@@ -12,14 +12,15 @@ interface CECprops{
   closeModel:()=>void,
   edit:Income|undefined,
   categories:Array<Category>,
-  loading:boolean
+  loading:boolean,
+  created_at?:Date|null
 }
 
 
 
 interface fields{
   title:string,
-  amount:number|null,
+  amount:number| 0,
   cat_id:number | null,
 }
 
@@ -27,12 +28,12 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
 
   const dispatch = useDispatch();
 
-  const {closeModel,visible,edit,loading,categories} = props;
+  const {closeModel,visible,edit,loading,categories,created_at} = props;
 
   // form related
   const [fields,setFields] = useState<fields>({
     title:'',
-    amount:null,
+    amount:0,
     cat_id:null,
   })
 
@@ -74,7 +75,7 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
   const modelClose = ()=>{
     setFields({
       title:'',
-      amount:null,
+      amount:0,
       cat_id:null,
     })
     closeModel();
@@ -84,7 +85,11 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
   // create
   const create = async (e:React.FormEvent)=>{
     e.preventDefault();
-    const form = setFormdata(fields);
+    let formObj:any = {
+      ...fields
+    }
+    if(created_at) formObj.created_at =created_at
+    const form = setFormdata(formObj);
     await dispatch(createIncome(form,modelClose));
   }
 
@@ -105,7 +110,11 @@ const CreateEditIncome:React.FC<CECprops> =props=>{
   const update =  async (e:React.FormEvent)=>{
     e.preventDefault();
     if(edit){
-      const form = setFormdata(fields);
+      let formObj:any = {
+        ...fields
+      }
+      if(created_at) formObj.created_at =created_at
+      const form = setFormdata(formObj);
       await dispatch(updateIncome(form,edit?.id,modelClose));
     }
   }

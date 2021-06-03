@@ -8,13 +8,15 @@ interface stateInterface{
   loading:boolean,
   error:any,
   creating:boolean,
+  total_income:number|undefined
 }
 
 const initialState:stateInterface = {
   incomes:undefined,
   error:undefined,
   loading:false,
-  creating:false
+  creating:false,
+  total_income:undefined
 }
 
 
@@ -32,6 +34,10 @@ const IncomeSlice = createSlice({
     fetchIncomeSuccess(state,actions){
       state.loading = false;
       state.incomes = actions.payload;
+    },
+
+    addTotalIncome(state,actions){
+      state.total_income = actions.payload;
     },
 
     fetchIncomeFail(state,actions){
@@ -75,6 +81,7 @@ const IncomeSlice = createSlice({
 export const {
   fetchIncomeFail,
   fetchIncomeRequest,
+  addTotalIncome,
   fetchIncomeSuccess,
 
   createIncomeFail,

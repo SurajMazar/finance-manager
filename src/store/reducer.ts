@@ -5,6 +5,7 @@ import categoryReducer from './action-reducer/category.actionreducer';
 import incomeReducer from './action-reducer/income.actionreducer';
 import expenseReducer from './action-reducer/expense.actionreducer';
 
+
 const reducers = {
   router:connectRouter(history),
   auth:authReducer,

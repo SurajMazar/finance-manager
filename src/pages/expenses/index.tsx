@@ -11,11 +11,12 @@ import Category from "../../models/category.model";
 import { fetchCategory } from "../../services/category.service";
 import Expense from "../../models/expense.model";
 import { fetchExpenses } from "../../services/expense.service";
+import { fetchDaybookExpenses, fetchDaybookIncome } from "../../services/daybook.service";
 interface state{
   expense:{
     expenses:Array<Expense>,
     loading:boolean,
-    creating:boolean
+    creating:boolean,
   },
   category:{
     categories:Array<Category>
@@ -29,6 +30,8 @@ const ExpensePage:React.FC = () =>{
   // global state
   const dispatch = useDispatch(); // redux hooks
   useEffect(()=>{
+    dispatch(fetchDaybookExpenses());
+    dispatch(fetchDaybookIncome());
     dispatch(fetchExpenses());
     dispatch(fetchCategory());
   },[dispatch]);
@@ -54,10 +57,7 @@ const ExpensePage:React.FC = () =>{
   
   const [showModal,setShowModel] = useState(false);
 
-  /** open create model **/
-  const openModel =()=>{
-    setShowModel(true);
-  }
+
 
   /** close modal */
   const closeModel =()=>{
@@ -68,8 +68,14 @@ const ExpensePage:React.FC = () =>{
    const [editIncome,setEditCat] = useState<Expense|undefined>(undefined);
    const openeditModel = (exp:Expense) =>{
      setEditCat(exp);
-     openModel();
-   }
+     setShowModel(true);
+  }
+
+     /** open create model **/
+  const openModel =()=>{
+    setEditCat(undefined);
+    setShowModel(true);
+  }
 
 
   return(

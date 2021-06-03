@@ -55,10 +55,7 @@ const IncomePage:React.FC = () =>{
   
   const [showModal,setShowModel] = useState(false);
 
-  /** open create model **/
-  const openModel =()=>{
-    setShowModel(true);
-  }
+  
 
   /** close modal */
   const closeModel =()=>{
@@ -69,8 +66,14 @@ const IncomePage:React.FC = () =>{
    const [editIncome,setEditCat] = useState<Income|undefined>(undefined);
    const openeditModel = (inc:Income) =>{
      setEditCat(inc);
-     openModel();
-   }
+     setShowModel(true);
+  }
+
+   /** open create model **/
+  const openModel =()=>{
+    setEditCat(undefined);
+    setShowModel(true);
+  }
 
 
   return(

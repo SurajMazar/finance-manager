@@ -12,14 +12,16 @@ interface CECprops{
   closeModel:()=>void,
   edit:Expense|undefined,
   categories:Array<Category>,
-  loading:boolean
+  loading:boolean,
+  created_at?:Date|null,
+  max?:number
 }
 
 
 
 interface fields{
   title:string,
-  amount:number|null,
+  amount:number,
   cat_id:number | null,
 }
 
@@ -27,12 +29,12 @@ const CreateEditExpense:React.FC<CECprops> =props=>{
 
   const dispatch = useDispatch();
 
-  const {closeModel,visible,edit,loading,categories} = props;
+  const {closeModel,visible,edit,loading,categories,created_at,max} = props;
 
   // form related
   const [fields,setFields] = useState<fields>({
     title:'',
-    amount:null,
+    amount:0,
     cat_id:null,
   })
 
@@ -74,7 +76,7 @@ const CreateEditExpense:React.FC<CECprops> =props=>{
   const modelClose = ()=>{
     setFields({
       title:'',
-      amount:null,
+      amount:0,
       cat_id:null,
     })
     closeModel();
@@ -84,7 +86,11 @@ const CreateEditExpense:React.FC<CECprops> =props=>{
   // create
   const create = async (e:React.FormEvent)=>{
     e.preventDefault();
-    const form = setFormdata(fields);
+    let formObj:any = {
+      ...fields
+    }
+    if(created_at) formObj.created_at =created_at
+    const form = setFormdata(formObj);
     await dispatch(createExpense(form,modelClose));
   }
 
@@ -105,7 +111,11 @@ const CreateEditExpense:React.FC<CECprops> =props=>{
   const update =  async (e:React.FormEvent)=>{
     e.preventDefault();
     if(edit){
-      const form = setFormdata(fields);
+      let formObj:any = {
+        ...fields
+      }
+      if(created_at) formObj.created_at =created_at
+      const form = setFormdata(formObj);
       await dispatch(updateExpense(form,edit?.id,modelClose));
     }
   }
@@ -151,7 +161,13 @@ const CreateEditExpense:React.FC<CECprops> =props=>{
 
                 <Grid item xs={12}>
                   {/* name field */}
-                    <TextField  label="Amount" type="number" value={fields.amount || undefined} required onChange={(e)=>onFieldChange(e,'amount')} />
+                    <TextField  label="Amount" type="number" 
+                      value={fields.amount || undefined} required onChange={(e)=>onFieldChange(e,'amount')} 
+                      inputProps={{
+                        min:0,
+                        max:max?max:''
+                      }}
+                    />
                 </Grid>
 
 

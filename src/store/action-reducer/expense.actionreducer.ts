@@ -5,6 +5,7 @@ import {udateIncomeExpenseArray} from '../../utils/common.utils';
 
 interface stateInterface{
   expenses:Array<Expense> | undefined,
+  total_expense:number|undefined,
   loading:boolean,
   error:any,
   creating:boolean,
@@ -12,6 +13,7 @@ interface stateInterface{
 
 const initialState:stateInterface = {
   expenses:undefined,
+  total_expense:undefined,
   error:undefined,
   loading:false,
   creating:false
@@ -32,6 +34,10 @@ const ExpenseSlice = createSlice({
     fetchExpenseSuccess(state,actions){
       state.loading = false;
       state.expenses = actions.payload;
+    },
+
+    addTotalExpense(state,actions){
+      state.total_expense = actions.payload;
     },
 
     fetchExpenseFail(state,actions){
@@ -75,6 +81,7 @@ const ExpenseSlice = createSlice({
 export const {
   fetchExpenseFail,
   fetchExpenseRequest,
+  addTotalExpense,
   fetchExpenseSuccess,
 
   createExpenseFail,

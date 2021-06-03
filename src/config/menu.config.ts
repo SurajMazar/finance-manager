@@ -30,7 +30,11 @@ const menus:Array<menu> = [
     icon:FcTodoList,
     path:'/category'
   },
-
+  {
+    path:'/daybook',
+    icon:FcReadingEbook,
+    name:'Daybook'
+  },
   {
     path:'/income',
     icon:FcCurrencyExchange,
@@ -44,11 +48,6 @@ const menus:Array<menu> = [
   },
   {
     name:'Information'
-  },
-  {
-    path:'/daybook',
-    icon:FcReadingEbook,
-    name:'Daybook'
   },
   {
     path:'/reports',

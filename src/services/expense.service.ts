@@ -39,7 +39,7 @@ export const createExpense = (formdata:FormData,callback:any = null) => {
         const response = await  httpbase().post('/expense/store',formdata);
         dispatch(createExpenseSuccess(response.data.data));
         if(callback)callback();
-        Toast('top',"Income added successfully",true);
+        Toast('top',"Transaction added successfully",true);
       }catch(e){
       if(e && e.response && e.response.data){
         dispatch(createExpenseFail(e.response.data));
@@ -58,7 +58,7 @@ export const updateExpense = (formdata:FormData,id:number,callback:any = null) =
         const response = await  httpbase().put('/expense/update/'+id,formdata);
         dispatch(updateExpenseSuccess(response.data.data));
         if(callback)callback();
-        Toast('top',"Income added successfully",true);
+        Toast('top',"Transaction updated successfully",true);
       }catch(e){
       if(e && e.response && e.response.data){
         dispatch(updateExpenseFail(e.response.data));

@@ -40,7 +40,7 @@ export const createIncome = (formdata:FormData,callback:any = null) => {
         const response = await  httpbase().post('/income/store',formdata);
         dispatch(createIncomeSuccess(response.data.data));
         if(callback)callback();
-        Toast('top',"Income added successfully",true);
+        Toast('top',"Transaction added successfully",true);
       }catch(e){
       if(e && e.response && e.response.data){
         dispatch(createIncomeFail(e.response.data));
@@ -59,7 +59,7 @@ export const updateIncome = (formdata:FormData,id:number,callback:any = null) =>
         const response = await  httpbase().put('/income/update/'+id,formdata);
         dispatch(updateIncomeSuccess(response.data.data));
         if(callback)callback();
-        Toast('top',"Income added successfully",true);
+        Toast('top',"Transaction updated successfully",true);
       }catch(e){
       if(e && e.response && e.response.data){
         dispatch(updateIncomeFail(e.response.data));

@@ -1,0 +1,26 @@
+.table-responsive{
+  overflow: auto;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.table{
+  border-collapse: collapse;
+  width: 100%;
+  th{
+    color:$white;
+    padding:1em;
+    text-align: left;
+    vertical-align: middle;
+    background-color: $primary-color;
+  }
+  td{
+    padding:1em;
+    border:1px solid $border;
+    border-bottom: none;
+  }
+  tfoot{
+    td{
+      color:$primary-color;
+    }
+  }
+}

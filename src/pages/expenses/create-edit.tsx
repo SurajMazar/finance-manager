@@ -48,7 +48,7 @@ const CreateEditExpense:React.FC<CECprops> =props=>{
   }
 
   const cateSelectorOptions = (categories:Array<Category>)=>{
-    if(categories){
+    if(categories && categories.length){
       const categoryList =  filterCatByType(categories,'expense',undefined);
       return(
         categoryList.map(cat=>{

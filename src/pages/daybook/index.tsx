@@ -107,8 +107,8 @@ const Daybook:React.FC = () =>{
    // used for editing
    const [editInc,setEditInc] = useState<Income|undefined>(undefined);
    const openeditModelInc= (inc:Income) =>{
-      setEditExp(inc);
-      setShowExpModel(true);
+    setEditInc(inc);
+    setShowIncModel(true);
   }
   /** open create model **/
   const openIncModel =()=>{
@@ -190,7 +190,7 @@ const Daybook:React.FC = () =>{
       visible={showExpModal} 
       closeModel={closeExpModel}
       categories={category.categories}
-      max={(income.total_income-expense.total_expense)-getTotal(expense.expenses || [])}
+      max={(income.total_income-expense.total_expense)-getTotal(expense.expenses || [])+getTotal(income.incomes || [])}
     />
     </>
   );

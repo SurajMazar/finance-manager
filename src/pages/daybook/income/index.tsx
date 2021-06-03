@@ -18,7 +18,7 @@ const DayBookExpenses:React.FC<ExpProps> = (props) =>{
 
   return(
     <>
-    <h3 className="text-center text-18">Expenses</h3>
+    <h3 className="text-center text-18">Income</h3>
     <div className="table-responsive">
       <table className="table">
         <thead>
